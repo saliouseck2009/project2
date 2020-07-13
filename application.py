@@ -1,13 +1,13 @@
 import os
 
-from flask import Flask,render_template,request,flash
+from flask import Flask, render_template, request, flash
 from flask_socketio import SocketIO, emit
-from env import Config
+#from venv import Config
 
 app = Flask(__name__)
 #app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
-app.config.from_object(Config)
+#pp.config.from_object(Config)
 socketio = SocketIO(app)
 
 
