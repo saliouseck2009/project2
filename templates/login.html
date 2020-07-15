@@ -2,27 +2,46 @@
     {% block content %}
         <script>
         document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage){
+                if(localStorage['user']){
+                    window.location="http://127.0.0.1:5000";
+                }
+            }
+
+            let form = document.querySelector('#form');
+            form.onsubmit= ( () =>{
+                alert('entré');
+                const user = document.querySelector('#user');
+                console.log(user.value);
+                addUserToLocalStorage(user.value);
+                return false
+            });
+
+
         });
+        function addUserToLocalStorage(user){
+            localStorage.setItem("user", user);
+        }
         </script>
     <div class="container">
-      <div class="row">
-          <div class="col-md-6">
-              <div class="card">
-                  <form class="box" action="{{ url_for('home') }}" method="post">
-                      <h1>Login</h1>
-                      <p class="text-muted"> Please enter your Pseudonyme </p>
-                      <input type="text" name="pseudo" placeholder="Username">
-                      <input type="submit" name="" value="Login" >
-                      <div class="col-md-12">
-                          <ul class="social-network social-circle">
-                              <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                              <li><a href="#" class="icoTwitter" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                              <li><a href="#" class="icoGoogle" title="Google +"><i class="fab fa-google-plus"></i></a></li>
-                          </ul>
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <form class="box" id='form' action="{{ url_for('home') }}" method="post">
+                    <h1>Login</h1>
+                    <p class="text-muted"> Please enter your Pseudonyme </p>
+                    <input id="user" type="text" name="pseudo" placeholder="Username">
+                    <input id="send" type="submit" name="" value="Login" >
+                    <div class="col-md-12">
+                        <ul class="social-network social-circle">
+                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fab fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
     {% endblock content %}

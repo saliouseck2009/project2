@@ -16,6 +16,9 @@ def home():
     if request.method == 'POST':
         pseudo = request.form['pseudo']
         return pseudo
+    else: 
+        return 'Bienvenue a la page de chatte' 
+    
 
 
 @app.route('/login')
